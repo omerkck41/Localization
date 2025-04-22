@@ -1,0 +1,134 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="display-4">@ViewBag.Greeting!</h1>
+        <p class="lead">@ViewBag.Welcome</p>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Current Culture Info</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Culture</th>
+                        <td>@ViewBag.CurrentCulture</td>
+                    </tr>
+                    <tr>
+                        <th>Display Name</th>
+                        <td>@System.Globalization.CultureInfo.CurrentCulture.DisplayName</td>
+                    </tr>
+                    <tr>
+                        <th>Native Name</th>
+                        <td>@System.Globalization.CultureInfo.CurrentCulture.NativeName</td>
+                    </tr>
+                    <tr>
+                        <th>Language</th>
+                        <td>@System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Date & Time Formatting</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Current Date</th>
+                        <td>@ViewBag.CurrentDate</td>
+                    </tr>
+                    <tr>
+                        <th>Current Time</th>
+                        <td>@ViewBag.CurrentTime</td>
+                    </tr>
+                    <tr>
+                        <th>Full DateTime</th>
+                        <td>@DateTime.Now.ToString("F", System.Globalization.CultureInfo.CurrentCulture)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Number Formatting</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Currency</th>
+                        <td>@ViewBag.Currency</td>
+                    </tr>
+                    <tr>
+                        <th>Number</th>
+                        <td>@ViewBag.Number</td>
+                    </tr>
+                    <tr>
+                        <th>Percentage</th>
+                        <td>@ViewBag.Percentage</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Change Language</h5>
+            </div>
+            <div class="card-body">
+                <p>Click on one of the languages below to change the application language:</p>
+                <div class="d-flex flex-wrap gap-2">
+                    @foreach (var culture in ViewBag.SupportedCultures)
+                    {
+                        <form asp-controller="Home" asp-action="SetLanguage" method="post">
+                            <input type="hidden" name="culture" value="@culture.Name" />
+                            <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
+                            <button type="submit" class="btn @(culture.Name == ViewBag.CurrentCulture ? "btn-primary" : "btn-outline-primary")">
+                                @culture.NativeName
+                            </button>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">About Core.Localization</h5>
+            </div>
+            <div class="card-body">
+                <p>
+                    Core.Localization is a modern, modular, and extensible localization library for .NET 9.0 that simplifies multi-language support,
+                    currency formatting, and date/time localization.
+                </p>
+                <p>
+                    <a class="btn btn-primary" asp-controller="Home" asp-action="Demo">Check out the Demo page</a>
+                    <a class="btn btn-secondary" href="https://github.com/omerkck41/Core.Localization" target="_blank">View on GitHub</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

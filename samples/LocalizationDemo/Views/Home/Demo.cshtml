@@ -1,0 +1,134 @@
+@model dynamic
+@{
+    ViewData["Title"] = "Localization Demo";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="display-4">@Model.Greeting!</h1>
+        <p class="lead">@Model.Welcome</p>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">UI Elements</h5>
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username">
+                        <div class="form-text text-danger">@Model.Validation.Required</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email">
+                        <div class="form-text text-danger">@Model.Validation.EmailFormat</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password">
+                        <div class="form-text text-danger">@Model.Validation.MinLength</div>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex">
+                        <button type="submit" class="btn btn-primary">@Model.Actions.Submit</button>
+                        <button type="button" class="btn btn-secondary">@Model.Actions.Cancel</button>
+                        <button type="button" class="btn btn-success">@Model.Actions.Save</button>
+                        <button type="button" class="btn btn-danger">@Model.Actions.Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Date Formatting</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>@Model.DateTime.Today</th>
+                        <td>@Model.DateTime.ShortDate</td>
+                    </tr>
+                    <tr>
+                        <th>@Model.DateTime.Tomorrow</th>
+                        <td>@Model.DateTime.LongDate</td>
+                    </tr>
+                    <tr>
+                        <th>@Model.DateTime.Yesterday</th>
+                        <td>@Model.DateTime.Time</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Number Formatting</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Currency</th>
+                        <td>@Model.Numbers.Currency</td>
+                    </tr>
+                    <tr>
+                        <th>Number</th>
+                        <td>@Model.Numbers.Number</td>
+                    </tr>
+                    <tr>
+                        <th>Percentage</th>
+                        <td>@Model.Numbers.Percentage</td>
+                    </tr>
+                    <tr>
+                        <th>Large Currency</th>
+                        <td>@Model.Numbers.LargeCurrency</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">How It Works</h5>
+            </div>
+            <div class="card-body">
+                <p>Core.Localization provides a simple API for localizing your applications:</p>
+                
+                <pre><code>// Get localized string
+var greeting = _localization.GetString("Hello", culture);
+
+// Format with arguments
+var welcome = _localization.GetString("Welcome", culture, "Demo User");
+
+// Format currency
+var price = _formatter.FormatCurrency(1234.56m, culture: culture);
+
+// Format date
+var today = _formatter.FormatDate(DateTime.Now, culture: culture);</code></pre>
+                
+                <p>You can also use extension methods for more concise code:</p>
+                
+                <pre><code>// Using string extensions
+var message = "Hello".Localize(_localizationService);
+
+// With parameters
+var welcome = "Welcome".Localize(_localizationService, userName);</code></pre>
+                
+                <p>
+                    <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Back to Home</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
