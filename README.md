@@ -12,11 +12,6 @@ A modern, modular, and extensible localization library for .NET 9.0 that simplif
 - 🔧 **Extensible architecture** with provider pattern
 - 🧪 **Comprehensive unit tests**
 
-## Installation
-
-```bash
-dotnet add package Core.Localization
-```
 
 ## Quick Start
 
