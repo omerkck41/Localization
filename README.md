@@ -11,7 +11,6 @@ A modern, modular, and extensible localization library for .NET 9.0 that simplif
 - ⚡ **High performance** with caching support
 - 🔧 **Extensible architecture** with provider pattern
 - 🧪 **Comprehensive unit tests**
-- 📦 **NuGet package ready**
 
 ## Installation
 
